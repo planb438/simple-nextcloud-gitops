@@ -1,0 +1,5 @@
+# Ignore everything except needed files
+*
+!Chart.yaml
+!values.yaml
+!.helmignore
