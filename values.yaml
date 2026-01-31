@@ -1,0 +1,11 @@
+service:
+  type: NodePort
+  nodePorts:
+    http: 31000
+
+ingress:
+  enabled: false
+
+persistence:
+  enabled: true
+  size: 10Gi
