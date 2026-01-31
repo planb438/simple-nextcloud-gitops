@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: simple-nextcloud
+  namespace: argocd
+  labels:
+    app: nextcloud
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/planb438/simple-nextcloud-gitops.git
+    targetRevision: HEAD
+    path: apps/nextcloud  # Current directory
+    helm:
+      # Download dependencies automatically
+      valueFiles:
+      - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nextcloud
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
